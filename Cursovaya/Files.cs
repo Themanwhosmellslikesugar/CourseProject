@@ -8,10 +8,12 @@ namespace Cursovaya
 {
     class Files
     {
+        public string dir;
         public DirectoryInfo directory;
         public void createDirectory()
         {
-            directory = Directory.CreateDirectory(@"C:\Users\webma\Desktop\Cursovaya\Cursovaya\bin\Debug\DIR");
+            dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+            directory = Directory.CreateDirectory("DIR");
         } 
         public void cleanDirectory()
         {

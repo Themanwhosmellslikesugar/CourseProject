@@ -14,6 +14,9 @@ namespace Cursovaya
         public float sellingPrice;
         public Supply()
         {
+            scopeOfSupply = 0;
+            costOfSupply = 0;
+            sellingPrice = 0;
             int month = 0;
             int day = 0;
             Console.WriteLine("Введите месяц поставки: ");

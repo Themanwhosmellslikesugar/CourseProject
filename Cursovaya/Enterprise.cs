@@ -18,8 +18,8 @@ namespace Cursovaya
         public float netprofit = 0;
         public List<Production> productions;
         public TypeOfOwnership type;
-        float outlay = 0;
-        float income = 0;
+        public float outlay = 0;
+        public float income = 0;
         public List<Supply> supplys;
         public Enterprise()
         {
@@ -158,7 +158,7 @@ namespace Cursovaya
         public void printSupply()
         {
             int i = 0;
-            foreach (var val in productions)
+            foreach (var val in supplys)
             {
                 supplys[i].printInfo();
                 i++;

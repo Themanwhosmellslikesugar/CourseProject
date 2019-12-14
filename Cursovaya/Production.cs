@@ -14,6 +14,8 @@ namespace Cursovaya
         public int purchaseVolume;
         public Production()
         {
+            purchasePrice = 0;
+            purchaseVolume = 0;
             Console.WriteLine("Введите название продукции: ");
             do
             {

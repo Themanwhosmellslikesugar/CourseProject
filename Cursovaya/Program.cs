@@ -68,7 +68,7 @@ namespace Cursovaya
             for (int i = 0; i < count; i++)
             {
                 DirectoryInfo dir;
-                dir = Directory.CreateDirectory($@"C:\Users\webma\Desktop\Cursovaya\Cursovaya\bin\Debug\DIR\enterprise{i}");
+                dir = Directory.CreateDirectory($@"{file.dir}\DIR\enterprise{i}");
                 file.fileWriterEnterprise($"enterprise{i}\\enterprise{i}", enterprise[i]);
                 file.fileWriterType($"enterprise{i}\\type{i}", enterprise[i].type);
                 for (int j = 0; j < enterprise[i].productions.Count; j++)
@@ -92,8 +92,8 @@ namespace Cursovaya
                 file.fileReaderEnterprise($"enterprise{i}\\enterprise{i}");
                 file.fileReaderType($"enterprise{i}\\type{i}");
                 Console.WriteLine("ЗАКУПКИ:");
-                string[] searchProduction = Directory.GetFiles($@"C:\Users\webma\Desktop\Cursovaya\Cursovaya\bin\Debug\DIR\enterprise{i}\", $"enterprise{i}production*");
-                string[] searchSupply = Directory.GetFiles($@"C:\Users\webma\Desktop\Cursovaya\Cursovaya\bin\Debug\DIR\enterprise{i}\", $"enterprise{i}supply*");
+                string[] searchProduction = Directory.GetFiles($@"{file.dir}\DIR\enterprise{i}\", $"enterprise{i}production*");
+                string[] searchSupply = Directory.GetFiles($@"{file.dir}\DIR\enterprise{i}\", $"enterprise{i}supply*");
                 int j = 0;
                 foreach (string f in searchProduction)
                 {
@@ -138,7 +138,7 @@ namespace Cursovaya
                     Console.WriteLine("Введите какую закупку изменить?");
                     answerProduction = int.Parse(Console.ReadLine()) - 1;
                     enterprise[answerEnterprise].productions[answerProduction] = new Production();
-
+                    zerofication(enterprise, answerEnterprise);
                     enterprise[answerEnterprise].outlayProduction();
                     enterprise[answerEnterprise].outlaySupply();
                     enterprise[answerEnterprise].profitCallculating();
@@ -153,6 +153,7 @@ namespace Cursovaya
                     Console.WriteLine("Введите какую поставку изменить?");
                     answerSupply = int.Parse(Console.ReadLine()) - 1;
                     enterprise[answerEnterprise].supplys[answerSupply] = new Supply();
+                    zerofication(enterprise, answerEnterprise);
                     enterprise[answerEnterprise].outlayProduction();
                     enterprise[answerEnterprise].outlaySupply();
                     enterprise[answerEnterprise].profitCallculating();
@@ -165,6 +166,14 @@ namespace Cursovaya
                     break;
             }
             return answer;
+        }
+        //Необходимо обнулять предыдущие значения, чтобы при изменении данных предыдущие значения не доходили
+        static public void zerofication(Enterprise[] enterprise, int answerEnterprise)
+        {
+            enterprise[answerEnterprise].outlay = 0;
+            enterprise[answerEnterprise].income = 0;
+            enterprise[answerEnterprise].profit = 0;
+            enterprise[answerEnterprise].netprofit = 0;
         }
     }
 }
