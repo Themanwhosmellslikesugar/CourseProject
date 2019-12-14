@@ -42,6 +42,8 @@ namespace Cursovaya
             netprofitCallculating();
             Console.WriteLine("================================");
             printInfo();
+            printProduction();
+            printSupply();
         }
         void inputData()
         {
@@ -144,7 +146,7 @@ namespace Cursovaya
         {
             netprofit = (float)(profit - (profit * 0.2));
         }
-        public void printProduction(List<Production> productions)
+        public void printProduction()
         {
             int i = 0;
             foreach(var val in productions)
@@ -153,7 +155,7 @@ namespace Cursovaya
                 i++;
             }
         }
-        public void printSupply(Supply[] supplys)
+        public void printSupply()
         {
             int i = 0;
             foreach (var val in productions)
