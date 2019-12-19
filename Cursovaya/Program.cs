@@ -20,7 +20,7 @@ namespace Cursovaya
             Console.WriteLine("---------------------------------------------------------------------------");
             while (returnWhile)
             {
-                Console.WriteLine("Выбирете что сделать дальше \n 1 - Прочитать значение из файла \n 2 - Записать новые значения");
+                Console.WriteLine("Выберете что сделать дальше \n 1 - Прочитать значение из файла \n 2 - Записать новые значения \n 0 - ВЫХОД");
                 globalAnswer = int.Parse(Console.ReadLine());
                 switch (globalAnswer)
                 {
@@ -47,14 +47,39 @@ namespace Cursovaya
                             Console.WriteLine("----------------------------------------");
 
                         }
-                        //Изменение информации
+                        Console.WriteLine("Что вы хотите сделать? \n 1 - Изменить введеную ифнормациию \n 2 - Добавить информацию \n 3 - Удалить ифнормацию \n 0 - ПРОДОЛЖИТЬ ");
+                        answer = int.Parse(Console.ReadLine());
                         do
                         {
-                            answer = changeObject(enterprise);
+                            switch (answer)
+                            {
+                                //Изменение информации
+                                case 1:
+                                    do
+                                    {
+                                        answer = ChangeInfo.changeObject(enterprise);
+                                    } while (answer != 0);
+                                    break;
+                                //Добавление ифнормации
+                                case 2:
+                                    do
+                                    {
+                                        answer = ChangeInfo.AddObject(enterprise);
+                                    } while (answer != 0);
+                                    break;
+                                //Удаление информации
+                                case 3:
+                                    do
+                                    {
+                                        answer = ChangeInfo.DeleteObject(enterprise);
+                                    } while (answer != 0);
+                                    break;
+                            }
                         } while (answer != 0);
                         //Запись в файл
                         writeInFile(count, enterprise, file);
                         break;
+                
                     default:
                         returnWhile = false;
                         break;
@@ -114,66 +139,6 @@ namespace Cursovaya
                 i++;
             }
             Console.WriteLine("Чтение завершено");
-        }
-        static public int changeObject(Enterprise[] enterprise)
-        {
-            int answer = 0;
-            int answerEnterprise = 0;
-            int answerProduction = 0;
-            int answerSupply = 0;
-            Console.WriteLine("Вы хотите изменить информацию о предприятии, поставке или закупке? 1 - предприятие 2 - закупка, 3 - поставка, все кроме этого продолжить ");
-            answer = int.Parse(Console.ReadLine());
-            switch (answer)
-            {
-                case 1:
-                    Console.WriteLine("Введите какое предприятие изменить?");
-                    answerEnterprise = int.Parse(Console.ReadLine()) - 1;
-                    enterprise[answerEnterprise] = new Enterprise();
-
-                    break;
-                case 2:
-                    Console.WriteLine("Введите какое предприятие изменить?");
-                    answerEnterprise = int.Parse(Console.ReadLine()) - 1;
-
-                    Console.WriteLine("Введите какую закупку изменить?");
-                    answerProduction = int.Parse(Console.ReadLine()) - 1;
-                    enterprise[answerEnterprise].productions[answerProduction] = new Production();
-                    zerofication(enterprise, answerEnterprise);
-                    enterprise[answerEnterprise].outlayProduction();
-                    enterprise[answerEnterprise].outlaySupply();
-                    enterprise[answerEnterprise].profitCallculating();
-                    enterprise[answerEnterprise].netprofitCallculating();
-                    enterprise[answerEnterprise].printInfo();
-                    enterprise[answerEnterprise].productions[answerProduction].printInfo();
-                    break;
-                case 3:
-                    Console.WriteLine("Введите какое предприятие изменить?");
-                    answerEnterprise = int.Parse(Console.ReadLine()) - 1;
-
-                    Console.WriteLine("Введите какую поставку изменить?");
-                    answerSupply = int.Parse(Console.ReadLine()) - 1;
-                    enterprise[answerEnterprise].supplys[answerSupply] = new Supply();
-                    zerofication(enterprise, answerEnterprise);
-                    enterprise[answerEnterprise].outlayProduction();
-                    enterprise[answerEnterprise].outlaySupply();
-                    enterprise[answerEnterprise].profitCallculating();
-                    enterprise[answerEnterprise].netprofitCallculating();
-                    enterprise[answerEnterprise].printInfo();
-                    enterprise[answerEnterprise].supplys[answerSupply].printInfo();
-                    break;
-                default:
-                    Console.WriteLine("Применение изменений....");
-                    break;
-            }
-            return answer;
-        }
-        //Необходимо обнулять предыдущие значения, чтобы при изменении данных предыдущие значения не доходили
-        static public void zerofication(Enterprise[] enterprise, int answerEnterprise)
-        {
-            enterprise[answerEnterprise].outlay = 0;
-            enterprise[answerEnterprise].income = 0;
-            enterprise[answerEnterprise].profit = 0;
-            enterprise[answerEnterprise].netprofit = 0;
         }
     }
 }

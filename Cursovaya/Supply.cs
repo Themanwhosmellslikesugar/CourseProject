@@ -55,7 +55,7 @@ namespace Cursovaya
         public float income()
         {
             return scopeOfSupply * sellingPrice;
-        }
+        }   
         public void printInfo()
         {
             Console.WriteLine($"Дата поставки: {dateOfSupply.ToString("d")} \n  Объем поставки: {scopeOfSupply} \n  Себестоимость поставки: {costOfSupply} \n  Цена реализации: {sellingPrice}");
