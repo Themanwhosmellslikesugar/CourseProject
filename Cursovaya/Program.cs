@@ -16,6 +16,20 @@ namespace Cursovaya
             int globalAnswer = 0;
             bool returnWhile = true;
             Files file = new Files();
+            //test block
+            string test_filename;
+            string value;
+            Console.WriteLine("Введите название файла:");
+            test_filename = Console.ReadLine();
+            SaveManager saveFile = new SaveManager(test_filename);
+            Console.WriteLine("Что записать?");
+            value = Console.ReadLine();
+            saveFile.WriteLine(value);
+            Test_WritableObj test = new Test_WritableObj();
+            test.subject = "test";
+            test.number = 21;
+            test.Write(saveFile);
+            //end.
             Console.WriteLine("Программа расчета прибыли предприятия сельскохозяйственного предприятия...");
             Console.WriteLine("---------------------------------------------------------------------------");
             while (returnWhile)

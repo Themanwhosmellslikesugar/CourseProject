@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="ChangeInfo.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="IWritableObject.cs" />
+    <Compile Include="SaveManager.cs" />
+    <Compile Include="Test_WritableObj.cs" />
     <Compile Include="TypeOfOwnership.cs" />
     <Compile Include="Supply.cs" />
     <Compile Include="Production.cs" />
